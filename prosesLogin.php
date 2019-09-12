@@ -5,7 +5,7 @@ include('config/db.php');
 $waktu = date("Y-m-d H:i:s");
 $username = $_POST['username'];
 $password = $_POST['password'];
-//ubah password ke md5 
+//ubah password ke md5
 $passFin = md5($password);
 class dataAnggota{}
 $anggota = new dataAnggota();
@@ -20,11 +20,12 @@ $jlhSAkun = mysqli_num_rows($kSAkun);
 if($jlhAkun > 0){
     if($jlhSAkun > 0){
         $anggota -> statusLogin = 'success';
+        $_SESSION['userSes'] = $username;
     }else{
         $anggota -> statusLogin = 'fail_password';
     }
 }else{
-   
+
     $anggota -> statusLogin = 'no_username';
 }
 
